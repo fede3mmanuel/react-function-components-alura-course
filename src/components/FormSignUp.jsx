@@ -11,6 +11,13 @@ function FormSignUp({handleSubmit}) {
 	const [ email, setEmail] = useState('')
 	const [ prom, setProm] = useState(true)
 	const [ nov, setNov] = useState(true)
+
+	const [errors, setErrors] = useState({
+		name: {
+			error: true,
+			message: 'Deben ser al menos tres caracteres'
+		}
+	})
 	return (
 		<form onSubmit={(e) => {
 			e.preventDefault()
@@ -20,7 +27,7 @@ function FormSignUp({handleSubmit}) {
 			<TextField id="name" label="Nombre" variant="outlined" fullWidth margin="normal" onChange={(e) => {
 				console.log(e.target.value);
 				setName(e.target.value)
-			}} value={ name }/>
+			}} value={ name } error={errors.name.error} helperText={errors.name.error ? errors.name.message : ''}/>
 			<TextField id="lastName" label="Apellidos" variant="outlined" fullWidth margin="normal" onChange={(e) => {
 				setLastname(e.target.value)
 			}} value={ lasName }/>
